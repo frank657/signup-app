@@ -1,0 +1,56 @@
+<image mode="aspectFill" style="width: {{flyerRes.width}}px; height: {{flyerRes.height}}px" src="/images/flyer.jpg" show-menu-by-longpress="true"></image>
+
+<view class="pa20 box-border">
+  <view class="text-center">
+    
+    
+    <view class="mt30 d-flex flex-column">
+      <text class="text-size-sheader bold text-grey-dark">When</text>
+      <text>Sat, 31 Sept</text>
+      <text>11:00pm - late</text>
+    </view>
+    <view class="mt100 d-flex flex-column">
+      <view class="text-size-sheader bold text-grey-dark">Where</view>
+      <text>W Hotel bar</text>
+    </view>
+    <view class="mt100">
+      <text class="text-size-sheader bold text-grey-dark">Registered ({{[1,2,3,4,5].length}})</text>
+      <scroll-view scroll-x class="mt20 mb30">
+        <view class="d-flex">
+         <image wx:for="{{10}}" 
+          src="/images/flyer.jpg"
+          class="avatar-md mr"></image>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>
+
+<view class="invisible-footer"></view>
+
+<view class="border-top border-grey pa20 w100 box-border bg-white"
+  style="position: fixed; bottom: 0; left 0: right: 0;">
+
+  <view class="text-center">
+    <text class="text-size-sheader bold text-grey-dark">Going?</text>
+    <view class="d-flex space-between mt20 mb30">
+      <button 
+        class="w30 {{attend ==='yes'?'bg-green text-white':'border-grey text-grey border'}}"
+        style="margin: 0"
+        data-attend="{{attendOptions[0]}}"
+        bindtap="selectAttend">{{attendOptions[0]}}</button>
+      <button 
+        class="w30 {{attend ==='maybe'?'bg-grey-dark text-white':'border-grey text-grey border'}}"
+        style="margin: 0"
+        data-attend="{{attendOptions[1]}}"
+        bindtap="selectAttend">{{attendOptions[1]}}</button>
+      <button 
+        class="w30 {{attend ==='no'?'bg-red-light text-white':'border-grey text-grey border'}}"
+        style="margin: 0"
+        data-attend="{{attendOptions[2]}}"
+        bindtap="selectAttend">{{attendOptions[2]}}</button>
+    </view>
+  </view>
+
+  <button class="bg-red text-white" disabled="{{attend === null}}">Submit</button>
+</view>

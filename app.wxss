@@ -1,0 +1,20 @@
+@import 'stylingsheets/components/components';
+@import 'stylingsheets/layout/layout';
+
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+
+.container-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx 20rpx 0rpx 20rpx;
+}
