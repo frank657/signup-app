@@ -122,27 +122,25 @@ Page({
   },
 
   loadEventData(event) {
+    console.log('event', event.toJSON())
     const page = this
     event = event.toJSON()
     event.dateTimeStart = DF.formatTimeText(new Date(event.dateTimeStart))
     event.dateTimeEnd = DF.formatTimeText(new Date(event.dateTimeEnd))
     this.setData({ event: event })
-    const image = event.flyer.url
+    // const image = event.flyer.url
+    const height = this.data.event.flyer.metaData.height
+    const width = this.data.event.flyer.metaData.width
 
     wx.getSystemInfo({
       success: function (res) {
         const screenWidth = res.screenWidth
-        wx.getImageInfo({
-          src: image,
-          success: (res) => {
-            const flyerRes = {
-              width: screenWidth,
-              height: screenWidth / res.width * res.height
-            }
-            page.setData({ flyerRes })
-            wx.hideLoading()
-          }
-        })
+        const flyerRes = {
+          width: screenWidth,
+          height: screenWidth / width * height
+        }
+        page.setData({ flyerRes })
+        wx.hideLoading()
       },
     })
   },

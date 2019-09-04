@@ -1,8 +1,12 @@
 <!--index.wxml-->
-<view class="container" style="background-image: url('http://lc-FUNX0gSQ.cn-n1.lcfile.com/6ba31d07e46f903a2198.jpeg')">
+<view class="container" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), url('http://lc-funx0gsq.cn-n1.lcfile.com/c3b62ecb056d49121a51.jpeg');">
   <view class="usermotto d-flex flex-column item-center pa20 text-center">
     <text class="user-motto text-white bold text-size-theader" bindtap="navToEvents">Hey there!
-    This is just a simple signup app</text>
+    This is just a simple signup app to manage your attendees...
+    like for your 5th twentieth birthday
+    ...
+    Currently only available for Val's 11th twentieth birthday</text>
+
     <button bindgetuserinfo="getUserInfo" open-type="getUserInfo" class="bg-red text-white mt100 dib">Log in</button>
   </view>
 </view>

@@ -33,11 +33,16 @@ Page({
       longitude = this.data.selectedLocation.longitude
     }
 
-    new AV.File('flyer', {
+    const height = this.data.height
+    const width = this.data.width
+
+    const file = new AV.File('flyer', {
       blob: {
         uri: flyerUrl,
       },
-    }).save().then(file => {
+    }).set('height', height).set('width', width)
+
+    file.save().then(file => {
       const event = new AV.Object('Event')
       const user = AV.User.current()
       const geopoint = new AV.GeoPoint(latitude, longitude)
@@ -77,6 +82,10 @@ Page({
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
       success: function(res) {
+        wx.getImageInfo({
+          src: res.tempFilePaths[0],
+          success: res => page.setData({ height: res.height, width: res.width })
+        })
         page.setData({ flyerUrl: res.tempFilePaths[0] })
       },
     })

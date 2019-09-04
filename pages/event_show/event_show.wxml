@@ -5,7 +5,6 @@
 <view class="pa20 box-border">
   <view class="text-center">
     
-    
     <view class="mt30 d-flex flex-column">
       <text class="text-size-header bold text-grey-dark">{{event.title}}</text>
     </view>
@@ -24,7 +23,7 @@
     <view class="mt100 d-flex flex-column">
       <view class="text-size-sheader bold text-grey-dark">Where</view>
       <text>{{event.location}}</text>
-      <text class="text-red mt20" bindtap="showMap">view map</text>
+      <text wx:if="{{event.geolocation.latitude !== 0 && event.geolocation.longitude !== 0}}" class="text-red mt20" bindtap="showMap">view map</text>
     </view>
     <view class="mt100">
       <text class="text-size-sheader bold text-grey-dark">Replied ({{attendees.length}})</text>

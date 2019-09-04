@@ -61,7 +61,7 @@
 <view class="border-top border-grey pa20 w100 box-border bg-white"
   style="position: fixed; bottom: 0; left 0: right: 0;">
   <button class="bg-red text-white" 
+    disabled="{{!flyerUrl || !title || !startDate || !startTime || !endDate || !endTime || !locationName}}"
     bindtap="createEvent">
     Create</button>
 </view>
-    <!-- disabled="{{!flyerUrl || !title || !startDate || !startTime || !endDate || !endTime || !locationName}}" -->

@@ -41,6 +41,7 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
+    wx.hideLoading()
     var query = new AV.Query('Event');
     query.find().then((res) => {
       // this.setData({ events: res) })
