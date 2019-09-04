@@ -1,24 +1,37 @@
-<image mode="aspectFill" style="width: {{flyerRes.width}}px; height: {{flyerRes.height}}px" src="/images/flyer.jpg" show-menu-by-longpress="true"></image>
+<view class="w100 d-flex content-center">
+  <image mode="aspectFill" style="width: {{flyerRes.width}}px; height: {{flyerRes.height}}px; transition: 0.3s;" src="{{event.flyer.url}}" show-menu-by-longpress="true"></image>
+</view>
 
 <view class="pa20 box-border">
   <view class="text-center">
     
     
     <view class="mt30 d-flex flex-column">
-      <text class="text-size-sheader bold text-grey-dark">When</text>
-      <text>Sat, 31 Sept</text>
-      <text>11:00pm - late</text>
+      <text class="text-size-header bold text-grey-dark">{{event.title}}</text>
+    </view>
+    <view class="mt100 d-flex flex-column">
+      <view class="text-size-sheader bold text-grey-dark">When</view>
+      <block wx:if="{{event.dateTimeStart.date === event.dateTimeEnd.date}}">
+        <text>{{event.dateTimeStart.date}}</text>
+        <text>{{event.dateTimeStart.time + ' to ' + event.dateTimeEnd.time}}</text>
+      </block>
+      <block wx:else>
+        <text>{{event.dateTimeStart.date}}, {{event.dateTimeStart.time}}</text>
+        <text>until</text>
+        <text>{{event.dateTimeEnd.date}}, {{event.dateTimeEnd.time}}</text>
+      </block>
     </view>
     <view class="mt100 d-flex flex-column">
       <view class="text-size-sheader bold text-grey-dark">Where</view>
-      <text>W Hotel bar</text>
+      <text>{{event.location}}</text>
+      <text class="text-red mt20" bindtap="showMap">view map</text>
     </view>
     <view class="mt100">
-      <text class="text-size-sheader bold text-grey-dark">Registered ({{[1,2,3,4,5].length}})</text>
+      <text class="text-size-sheader bold text-grey-dark">Replied ({{attendees.length}})</text>
       <scroll-view scroll-x class="mt20 mb30">
-        <view class="d-flex">
-         <image wx:for="{{10}}" 
-          src="/images/flyer.jpg"
+        <view class="d-flex" bindtap="navToAttendees">
+         <image wx:for="{{attendees}}" wx:key
+          src="{{item.user.avatarUrl}}"
           class="avatar-md mr"></image>
         </view>
       </scroll-view>
@@ -52,5 +65,5 @@
     </view>
   </view>
 
-  <button class="bg-red text-white" disabled="{{attend === null}}">Submit</button>
+  <button class="bg-red text-white" disabled="{{attend === null}}" bindtap="submit">Submit</button>
 </view>

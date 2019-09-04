@@ -5,29 +5,26 @@ const AV = require('../../libs/av-weapp-min.js');
 
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+
   },
   //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
+  navToEvents: function() {
+    wx.switchTab({
+      url: '/pages/events/events'
     })
   },
   onLoad: function () {
-    if (app.globalData.userInfo) {
+    if (app.globalData.user) {
       this.setData({
-        userInfo: app.globalData.userInfo,
+        user: app.globalData.user,
         hasUserInfo: true
       })
-    } else if (this.data.canIUse){
+    } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
         this.setData({
-          userInfo: res.userInfo,
+          user: res.user,
           hasUserInfo: true
         })
       }
@@ -35,9 +32,9 @@ Page({
       // 在没有 open-type=getUserInfo 版本的兼容处理
       wx.getUserInfo({
         success: res => {
-          app.globalData.userInfo = res.userInfo
+          app.globalData.user = res.user
           this.setData({
-            userInfo: res.userInfo,
+            user: res.user,
             hasUserInfo: true
           })
         }
@@ -45,11 +42,16 @@ Page({
     }
   },
   getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+    const user = AV.User.current();
+    user.set(e.detail.userInfo).save().then(user => {
+      // 成功，此时可在控制台中看到更新后的用户信息
+      user = user.toJSON()
+      app.globalData.user = user;
+      this.setData({user})
+      console.log('data', this.data)
+      wx.navigateTo({
+        url: '/pages/events/events',
+      })
+    }).catch(console.error);
   }
 })

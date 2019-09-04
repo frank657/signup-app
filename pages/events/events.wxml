@@ -2,13 +2,11 @@
   <view class="pa w100">
     <view class="pa20 rounded d-flex flex-column text-center bg-grey-light">
       <text class="bold text-size-sheader text-grey-dark">Just a simple signup app</text>
-      <!-- <text class="bold text-size-sheader text-grey-dark">Click here to create your own event to manage your signs-ups</text> -->
+      <text bindtap="navToCreate" class="mt50 bold text-size-body text-grey-dark border rounded border-red text-red pa">Create your own event here</text>
     </view>
   </view>
 
-  <view class="w50 box-border pa" bindtap="navToShow" wx:for="{{[1,2,3]}}" wx:key>
-    <image class="w100 rounded" mode="aspectFill" src="/images/flyer.jpg"></image>
+  <view class="w50 box-border pa" bindtap="navToShow" wx:for="{{events}}" wx:key data-event-id="{{item.objectId}}">
+    <image class="w100 rounded" mode="aspectFill" src="{{item.flyer.url}}"></image>
   </view>
 </view>
-
-<button bindtap="test">test</button>

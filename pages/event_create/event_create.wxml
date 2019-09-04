@@ -1,0 +1,67 @@
+<view class="d-flex flex-column item-center mt50">
+  <button wx:if="{{!flyerUrl}}" class="bg-red text-white opc7 bold" bindtap="uploadFlyer">Upload a flyer</button>
+  <image wx:if="{{flyerUrl}}" src="{{flyerUrl}}" mode="aspectFill" class="flyer"></image>
+</view>
+
+<view class="pa20 box-border">
+  <view class="text-center d-flex flex-column">
+    <view class="mt100 d-flex flex-column">
+      <text class="text-size-sheader bold text-grey-dark">Title</text>
+      <view class="content-center d-flex">
+        <textarea bindblur="setTitle" class="border border-grey-light rounded mt30" placeholder="What is your event called?"></textarea>
+      </view>
+    </view>
+
+
+    <view class="mt100 d-flex flex-column">
+      <text class="text-size-sheader bold text-grey-dark mb30">Start</text>
+      <view class="d-flex space-around">
+        <view class="w40">
+          <picker class="bg-red text-white mauto py px20 rounded opc7" 
+            bindchange="startChangeDate"
+            mode="date">{{startDate?startDate:'Select a date'}}</picker>
+        </view>
+        <view class="w40">
+          <picker class="bg-red text-white mauto py px20 rounded opc7" 
+            bindchange="startChangeTime" 
+            mode="time">{{startTime?startTime:'Select a time'}}</picker>
+        </view>
+      </view>
+    </view>
+
+    <view class="mt100 d-flex flex-column">
+      <text class="text-size-sheader bold text-grey-dark mb30">End</text>
+      <view class="d-flex space-around">
+        <view class="w40">
+          <picker class="bg-red text-white mauto py px20 rounded opc7" 
+            bindchange="endChangeDate"
+            start="{{endDate}}"
+            mode="date">{{endDate?endDate:'Select a date'}}</picker>
+        </view>
+        <view class="w40">
+          <picker class="bg-red text-white mauto py px20 rounded opc7" 
+            bindchange="endChangeTime" 
+            start="{{endTime}}"
+            mode="time">{{endTime?endTime:'Select a time'}}</picker>
+        </view>
+      </view>
+    </view>
+
+    <view class="mt100 d-flex flex-column item-center">
+      <view class="text-size-sheader bold text-grey-dark mb30">Where</view>
+      <view class="bg-red text-white py px20 rounded opc7" bindtap="pinLocation">Pin on the map</view>
+      <textarea bindblur="setLocationName" class="border border-grey-light rounded mt30" placeholder="{{placeholder}}" value="{{selectedLocation.name}}"></textarea>
+    </view>
+
+  </view>
+</view>
+
+<view style="height: 200rpx;"></view>
+
+<view class="border-top border-grey pa20 w100 box-border bg-white"
+  style="position: fixed; bottom: 0; left 0: right: 0;">
+  <button class="bg-red text-white" 
+    bindtap="createEvent">
+    Create</button>
+</view>
+    <!-- disabled="{{!flyerUrl || !title || !startDate || !startTime || !endDate || !endTime || !locationName}}" -->

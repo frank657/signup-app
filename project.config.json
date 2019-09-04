@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -65,6 +65,20 @@
 					"id": 1,
 					"name": "show",
 					"pathName": "pages/event_show/event_show",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "create",
+					"pathName": "pages/event_create/event_create",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "attendees",
+					"pathName": "pages/attendees/attendees",
 					"query": "",
 					"scene": null
 				}

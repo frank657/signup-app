@@ -1,0 +1,41 @@
+<view class="pa20 box-border">
+  <view class="text-center">
+    <view wx:if="{{yes.length > 0}}" class="mt30 d-flex flex-column item-center">
+      <text class="text-size-sheader bold text-grey-dark mb30 text-grey-dark">Coming</text>
+      <view class="d-flex">
+        <view class="d-flex flex-column" wx:for="{{yes}}" wx:key>
+          <image data-selected-attendee="{{item}}" bindtap="selectAttendee"
+            class="avatar-ml mr20 {{item.objectId === selectedAttendee.objectId?'border border5 border-red box-border':''}}"
+            src="{{item.user.avatarUrl}}"></image>
+        </view>
+      </view> 
+    </view>
+
+    <view wx:if="{{maybe.length > 0}}" class="mt30 d-flex flex-column item-center">
+      <text class="text-size-sheader bold text-grey-dark mb30 mt100 text-grey-dark">Maybe</text>
+      <view class="d-flex">
+        <view class="d-flex flex-column" wx:for="{{maybe}}" wx:key>
+          <image data-selected-attendee="{{item}}" bindtap="selectAttendee"
+            class="avatar-ml mr20 {{item.objectId === selectedAttendee.objectId?'border border5 border-red box-border':''}}"
+            src="{{item.user.avatarUrl}}"></image>
+        </view>
+      </view>
+    </view>
+
+    <view wx:if="{{no.length > 0}}" class="mt30 d-flex flex-column item-center">
+      <text class="text-size-sheader bold text-grey-dark mb30 mt100 text-grey-dark">No coming</text>
+      <view class="d-flex">
+        <view class="d-flex flex-column" wx:for="{{no}}" wx:key>
+          <image data-selected-attendee="{{item}}" bindtap="selectAttendee"
+            class="avatar-ml mr20 {{item.objectId === selectedAttendee.objectId?'border border5 border-red box-border':''}}"
+            src="{{item.user.avatarUrl}}"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{selectedAttendee}}" class="text-center border-top border-grey-light pa20 w100 box-border bg-white"
+  style="position: fixed; bottom: 0; left 0: right: 0;">
+  <text>{{selectedAttendee.user.nickName}}</text>
+</view>

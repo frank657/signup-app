@@ -1,13 +1,8 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+<view class="container" style="background-image: url('http://lc-FUNX0gSQ.cn-n1.lcfile.com/6ba31d07e46f903a2198.jpeg')">
+  <view class="usermotto d-flex flex-column item-center pa20 text-center">
+    <text class="user-motto text-white bold text-size-theader" bindtap="navToEvents">Hey there!
+    This is just a simple signup app</text>
+    <button bindgetuserinfo="getUserInfo" open-type="getUserInfo" class="bg-red text-white mt100 dib">Log in</button>
   </view>
 </view>

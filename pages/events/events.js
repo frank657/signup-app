@@ -10,24 +10,24 @@ Page({
 
   },
 
-  test() {
-
+  navToCreate() {
+    wx.navigateTo({
+      url: '/pages/event_create/event_create',
+    })
   },
 
-  navToShow() {
+  navToShow(e) {
+    wx.showLoading({ title: 'Loading' })
+    const id = e.currentTarget.dataset.eventId
     wx.navigateTo({
-      url: '/pages/event_show/event_show',
+      url: `/pages/event_show/event_show?id=${id}`,
     })
   },
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    var query = new AV.Query('events');
-    query.find().then((res) => {
-      // this.setData({test: res})
-      console.log(res[0].toJSON())
-    })
+
   },
 
   /**
@@ -41,7 +41,12 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
-
+    var query = new AV.Query('Event');
+    query.find().then((res) => {
+      // this.setData({ events: res) })
+      this.setData({ events: res.map((e) => { return e.toJSON() }) })
+      console.log(this.data)
+    })
   },
 
   /**

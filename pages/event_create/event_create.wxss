@@ -1,0 +1,10 @@
+/* pages/event_create/event_create.wxss */
+.flyer {
+  width: 400rpx;
+  height: 600rpx;
+  border-radius: 10rpx;
+}
+
+.opc7 {
+  opacity: 0.7;
+}
