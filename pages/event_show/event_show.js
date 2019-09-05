@@ -15,7 +15,7 @@ Page({
 
   navToAttendees() {
     wx.navigateTo({
-      url: `/pages/attendees/attendees?eventId=${this.options.id}`,
+      url: `/pages/attendees/attendees?eventId=${this.data.event.objectId}`,
     })
   },
 
@@ -80,7 +80,9 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
-    new AV.Query('Event').get(this.options.id).then(event => {
+    // const eventId = this.options.id
+    const eventId = "5d6fde8843e78c0068d99bb9"
+    new AV.Query('Event').get(eventId).then(event => {
       this.loadEventData(event)
       this.loadAttendeesData(event)
     })

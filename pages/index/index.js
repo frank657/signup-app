@@ -14,6 +14,11 @@ Page({
     })
   },
   onLoad: function () {
+    var file = new AV.Query('_File');
+    file.get('5d708150d5de2b0083ef9633').then((f) => {
+      this.setData({bgImage: f.toJSON().url})
+    })
+
     if (app.globalData.user) {
       this.setData({
         user: app.globalData.user,
@@ -50,7 +55,8 @@ Page({
       this.setData({user})
       console.log('data', this.data)
       wx.navigateTo({
-        url: '/pages/events/events',
+        // url: '/pages/events/events',
+        url: '/pages/event_show/event_show'
       })
     }).catch(console.error);
   }

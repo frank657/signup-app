@@ -16,6 +16,7 @@ Page({
   startChangeTime(e) { this.setData({ startTime: e.detail.value, endTime: e.detail.value }) },
   endChangeDate(e) { this.setData({ endDate: e.detail.value }) },
   endChangeTime(e) { this.setData({ endTime: e.detail.value }) },
+  changeEndLate(e) { this.setData({ endLate: e.detail.value }) },
   setTitle(e) { this.setData({ title: e.detail.value }) },
   setLocationName(e) { this.setData({ locationName: e.detail.value }) },
 
@@ -25,6 +26,7 @@ Page({
           title = this.data.title,
           dateTimeStart = new Date(`${this.data.startDate} ${this.data.startTime}`),
           dateTimeEnd = new Date(`${this.data.endDate} ${this.data.endTime}`),
+          endLate = this.data.endLate,
           locationName = this.data.locationName
     let   latitude = '',
           longitude = ''
@@ -50,6 +52,7 @@ Page({
       event.set('title', title)
       event.set('dateTimeStart', dateTimeStart)
       event.set('dateTimeEnd', dateTimeEnd)
+      event.set('endLate', endLate)
       event.set('geolocation', geopoint)
       event.set('location', locationName)
       event.set('flyer', file)

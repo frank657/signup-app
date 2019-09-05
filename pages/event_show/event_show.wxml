@@ -12,7 +12,7 @@
       <view class="text-size-sheader bold text-grey-dark">When</view>
       <block wx:if="{{event.dateTimeStart.date === event.dateTimeEnd.date}}">
         <text>{{event.dateTimeStart.date}}</text>
-        <text>{{event.dateTimeStart.time + ' to ' + event.dateTimeEnd.time}}</text>
+        <text>{{event.dateTimeStart.time}} {{event.endLate?'until late':'to ' + event.dateTimeEnd.time}}</text>
       </block>
       <block wx:else>
         <text>{{event.dateTimeStart.date}}, {{event.dateTimeStart.time}}</text>
