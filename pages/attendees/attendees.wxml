@@ -1,33 +1,33 @@
 <view class="pa20 box-border">
   <view class="text-center">
     <view wx:if="{{yes.length > 0}}" class="mt30 d-flex flex-column item-center">
-      <text class="text-size-sheader bold text-grey-dark mb30 text-grey-dark">Coming</text>
-      <view class="d-flex">
+      <text class="text-size-sheader bold text-grey-dark mb30 text-grey-dark">Coming{{yes?' ('+yes.length+')':''}}</text>
+      <view class="d-flex flex-wrap space-around">
         <view class="d-flex flex-column" wx:for="{{yes}}" wx:key>
           <image data-selected-attendee="{{item}}" bindtap="selectAttendee"
-            class="avatar-ml mr20 {{item.objectId === selectedAttendee.objectId?'border border5 border-red box-border':''}}"
+            class="avatar-ml ml20 mr20 mb30 {{item.objectId === selectedAttendee.objectId?'border border5 border-red box-border':''}}"
             src="{{item.user.avatarUrl}}"></image>
         </view>
       </view> 
     </view>
 
     <view wx:if="{{maybe.length > 0}}" class="mt30 d-flex flex-column item-center">
-      <text class="text-size-sheader bold text-grey-dark mb30 mt100 text-grey-dark">Maybe</text>
-      <view class="d-flex">
+      <text class="text-size-sheader bold text-grey-dark mb30 mt100 text-grey-dark">Maybe{{maybe?' ('+maybe.length+')':''}}</text>
+      <view class="d-flex flex-wrap space-around">
         <view class="d-flex flex-column" wx:for="{{maybe}}" wx:key>
           <image data-selected-attendee="{{item}}" bindtap="selectAttendee"
-            class="avatar-ml mr20 {{item.objectId === selectedAttendee.objectId?'border border5 border-red box-border':''}}"
+            class="avatar-ml ml20 mr20 mb30 {{item.objectId === selectedAttendee.objectId?'border border5 border-red box-border':''}}"
             src="{{item.user.avatarUrl}}"></image>
         </view>
       </view>
     </view>
 
     <view wx:if="{{no.length > 0}}" class="mt30 d-flex flex-column item-center">
-      <text class="text-size-sheader bold text-grey-dark mb30 mt100 text-grey-dark">No coming</text>
-      <view class="d-flex">
+      <text class="text-size-sheader bold text-grey-dark mb30 mt100 text-grey-dark">Not coming{{no?' ('+no.length+')':''}}</text>
+      <view class="d-flex flex-wrap space-around">
         <view class="d-flex flex-column" wx:for="{{no}}" wx:key>
           <image data-selected-attendee="{{item}}" bindtap="selectAttendee"
-            class="avatar-ml mr20 {{item.objectId === selectedAttendee.objectId?'border border5 border-red box-border':''}}"
+            class="avatar-ml ml20 mr20 mb30 {{item.objectId === selectedAttendee.objectId?'border border5 border-red box-border':''}}"
             src="{{item.user.avatarUrl}}"></image>
         </view>
       </view>

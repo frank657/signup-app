@@ -6,6 +6,9 @@
     "pages/event_create/event_create",
     "pages/attendees/attendees"
   ],
+  "usingComponents": {
+    "signin": "/components/signin/signin"
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

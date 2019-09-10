@@ -10,7 +10,9 @@ Page({
    */
   data: {
     attendOptions: ['yes', 'maybe', 'no'],
-    attend: null
+    attend: null,
+    showSignIn: false,
+    submitDisabled: false
   },
 
   navToAttendees() {
@@ -19,15 +21,20 @@ Page({
     })
   },
 
+  signIn(e) {
+    this.setData({showSignIn: true})
+  },
+
   submit() {
     wx.showLoading({ title: 'Loading' })
+    this.setData({submitDisabled: true})
+    console.log('test', this.data)
     
     const attend = this.data.attend
     const user = AV.User.current()
 
     if (this.data.userAttendEvent) {
       console.log('already attending')
-      console.log('id', this.data.userAttendEvent.objectId)
       let signup = AV.Object.createWithoutData('Signup', this.data.userAttendEvent.objectId);
       console.log('signup', signup)
       signup.set('attend', attend);
@@ -37,7 +44,7 @@ Page({
     } else {
       console.log('not attending')
       let signup = new AV.Object('Signup')
-      new AV.Query('Event').get(this.options.id).then((event) => {    
+      new AV.Query('Event').get(this.data.event.objectId).then((event) => {    
         signup.set('user', user)
         signup.set('event', event)
         signup.set('attend', attend)
@@ -55,10 +62,12 @@ Page({
   },
 
   showMap() {
-    const page = this
+    const event = this.data.event
+    console.log(event)
     wx.openLocation({
-      latitude: this.data.event.geolocation.latitude,
-      longitude: this.data.event.geolocation.longitude,
+      latitude: event.geolocation.latitude,
+      longitude: event.geolocation.longitude,
+      name: event.location
     })
   },
 
@@ -80,12 +89,17 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
-    // const eventId = this.options.id
-    const eventId = "5d6fde8843e78c0068d99bb9"
+    setTimeout(function () {
+      wx.stopPullDownRefresh()
+      wx.hideLoading()
+    }, 2000)
+    const eventId = this.options.id
     new AV.Query('Event').get(eventId).then(event => {
       this.loadEventData(event)
       this.loadAttendeesData(event)
     })
+    this.setData({ user: app.globalData.user })
+    console.log('data', this.data)
   },
 
   /**
@@ -106,7 +120,10 @@ Page({
    * Page event handler function--Called when user drop down
    */
   onPullDownRefresh: function () {
-
+    wx.showLoading({
+      title: 'Refreshing',
+    })
+    this.onShow()
   },
 
   /**
@@ -120,7 +137,10 @@ Page({
    * Called when user click on the top right corner to share
    */
   onShareAppMessage: function () {
-
+    return {
+      title: this.data.event.title,
+      path: `/pages/event_show/event_show?id=${this.data.event.objectId}`
+    }
   },
 
   loadEventData(event) {
@@ -142,7 +162,7 @@ Page({
           height: screenWidth / width * height
         }
         page.setData({ flyerRes })
-        wx.hideLoading()
+        // wx.hideLoading()
       },
     })
   },
@@ -158,9 +178,13 @@ Page({
 
       const userAttendEvent = attendees.find(a => a.user.objectId === currentUserId)
       if (userAttendEvent !== undefined) {
-        this.setData({ userAttendEvent, attend: userAttendEvent.attend })
+        this.setData({ userAttendEvent, attend: userAttendEvent.attend, submitDisabled: false, showUpdate: true })
       }
       console.log('data', this.data)
     })
+  },
+
+  update() {
+    this.setData({showUpdate: false})
   }
 })

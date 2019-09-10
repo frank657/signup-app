@@ -41,7 +41,11 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
-    wx.hideLoading()
+    setTimeout(function () {
+      wx.stopPullDownRefresh()
+      wx.hideLoading()
+    }, 2000)
+    // wx.hideLoading()
     var query = new AV.Query('Event');
     query.find().then((res) => {
       // this.setData({ events: res) })
@@ -68,7 +72,10 @@ Page({
    * Page event handler function--Called when user drop down
    */
   onPullDownRefresh: function () {
-
+    wx.showLoading({
+      title: 'Refreshing',
+    })
+    this.onShow()
   },
 
   /**

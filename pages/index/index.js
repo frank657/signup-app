@@ -14,9 +14,16 @@ Page({
     })
   },
   onLoad: function () {
-    var file = new AV.Query('_File');
-    file.get('5d708150d5de2b0083ef9633').then((f) => {
-      this.setData({bgImage: f.toJSON().url})
+    // var file = new AV.Query('_File');
+    // file.get('5d708150d5de2b0083ef9633').then((f) => {
+    //   this.setData({bgImage: f.toJSON().url})
+    // })
+
+    new AV.Query('Config').include('landingImage').find().then((config) => {
+      const bgImage = config[0].toJSON().landingImage.url
+      this.setData({ bgImage })
+      app.globalData.landingImage = bgImage
+      app.globalData.showEventsPage = config[0].toJSON().showEventsPage
     })
 
     if (app.globalData.user) {
@@ -46,18 +53,9 @@ Page({
       })
     }
   },
-  getUserInfo: function(e) {
-    const user = AV.User.current();
-    user.set(e.detail.userInfo).save().then(user => {
-      // 成功，此时可在控制台中看到更新后的用户信息
-      user = user.toJSON()
-      app.globalData.user = user;
-      this.setData({user})
-      console.log('data', this.data)
-      wx.navigateTo({
-        // url: '/pages/events/events',
-        url: '/pages/event_show/event_show'
-      })
-    }).catch(console.error);
+  navToApp: function(e) {
+    const showEventsPage = app.globalData.showEventsPage
+    const url = showEventsPage ? '/pages/events/events' : '/pages/event_show/event_show?id=5d6fde8843e78c0068d99bb9'
+    wx.navigateTo({url})
   }
 })

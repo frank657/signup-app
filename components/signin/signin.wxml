@@ -1,0 +1,11 @@
+<view class="overlay">
+  <view class="pa50 bg-white shadow rounded d-flex flex-column item-center w70 text-center">
+    <image mode="aspectFill" class="avatar-ml mb30" src="/images/logo.png"></image>
+    <text class="text-size-sheader mb30">Sign in to continue</text>
+    <text>Please sign in and allow Valval obtain your data to proceed</text>
+    <view class="d-flex space-around w100 mt30">
+      <button bindtap="hideSignIn" data-sign-in="false" class="border border-red text-red">No thanks</button>
+      <button bindgetuserinfo="getUserInfo" open-type="getUserInfo" data-sign-in="true" class="bg-red text-white">Yes please</button>
+    </view>
+  </view>
+</view>

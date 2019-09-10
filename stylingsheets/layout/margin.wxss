@@ -31,6 +31,10 @@
   margin-bottom: 0rpx !important;
 }
 
+.mb30 {
+  margin-bottom: 30rpx !important;
+}
+
 .mt {
   margin-top: 10rpx;
 }
@@ -121,6 +125,10 @@
 
 .pa20 {
   padding: 20rpx;
+}
+
+.pa50 {
+  padding: 50rpx;
 }
 
 .pb {

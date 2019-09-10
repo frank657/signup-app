@@ -7,6 +7,7 @@
       ... 
       Ready to party?</text>
 
-    <button bindgetuserinfo="getUserInfo" open-type="getUserInfo" class="bg-red text-white mt100 dib">Yeah!</button>
+    <button bindtap="navToApp" class="bg-red text-white mt100 dib">Yeah!</button>
+    <!-- <button bindgetuserinfo="getUserInfo" open-type="getUserInfo" class="bg-red text-white mt100 dib">Yeah!</button> -->
   </view>
 </view>

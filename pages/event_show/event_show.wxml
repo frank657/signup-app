@@ -8,6 +8,12 @@
     <view class="mt30 d-flex flex-column">
       <text class="text-size-header bold text-grey-dark">{{event.title}}</text>
     </view>
+
+    <view wx:if="{{event.info}}" class="mt100 d-flex flex-column">
+      <view class="text-size-sheader bold text-grey-dark">Info</view>
+      <text>{{event.info}}</text>
+    </view>
+
     <view class="mt100 d-flex flex-column">
       <view class="text-size-sheader bold text-grey-dark">When</view>
       <block wx:if="{{event.dateTimeStart.date === event.dateTimeEnd.date}}">
@@ -44,25 +50,40 @@
   style="position: fixed; bottom: 0; left 0: right: 0;">
 
   <view class="text-center">
-    <text class="text-size-sheader bold text-grey-dark">Going?</text>
-    <view class="d-flex space-between mt20 mb30">
-      <button 
-        class="w30 {{attend ==='yes'?'bg-green text-white':'border-grey text-grey border'}}"
-        style="margin: 0"
-        data-attend="{{attendOptions[0]}}"
-        bindtap="selectAttend">{{attendOptions[0]}}</button>
-      <button 
-        class="w30 {{attend ==='maybe'?'bg-grey-dark text-white':'border-grey text-grey border'}}"
-        style="margin: 0"
-        data-attend="{{attendOptions[1]}}"
-        bindtap="selectAttend">{{attendOptions[1]}}</button>
-      <button 
-        class="w30 {{attend ==='no'?'bg-red-light text-white':'border-grey text-grey border'}}"
-        style="margin: 0"
-        data-attend="{{attendOptions[2]}}"
-        bindtap="selectAttend">{{attendOptions[2]}}</button>
-    </view>
+    <text class="text-size-sheader bold text-grey-dark">{{showUpdate?'You have replied':'Going?'}}</text>
+    <block wx:if="{{user.nickName}}">
+      <block wx:if="{{showUpdate}}">
+        <view wx:if="{{attend === 'yes'}}" class="text-red text-size-theader mt20 mb50">You are going :D</view>
+        <view wx:if="{{attend === 'maybe'}}" class="text-red text-size-theader mt20 mb50">Maybe going</view>
+        <view wx:if="{{attend === 'no'}}" class="text-red text-size-theader mt20 mb50">You are not going :(</view>
+        <button class="bg-red text-white" bindtap="update">Update</button>
+      </block>
+      <block wx:if="{{!showUpdate}}">
+        <view class="d-flex space-between mt20 mb30">
+          <button 
+            class="w30 {{attend ==='yes'?'bg-green text-white':'border-grey text-grey border'}}"
+            style="margin: 0"
+            data-attend="{{attendOptions[0]}}"
+            bindtap="selectAttend">{{attendOptions[0]}}</button>
+          <button 
+            class="w30 {{attend ==='maybe'?'bg-grey-dark text-white':'border-grey text-grey border'}}"
+            style="margin: 0"
+            data-attend="{{attendOptions[1]}}"
+            bindtap="selectAttend">{{attendOptions[1]}}</button>
+          <button 
+            class="w30 {{attend ==='no'?'bg-red-light text-white':'border-grey text-grey border'}}"
+            style="margin: 0"
+            data-attend="{{attendOptions[2]}}"
+            bindtap="selectAttend">{{attendOptions[2]}}</button>
+        </view>
+        <button class="bg-red text-white" disabled="{{attend === null || submitDisabled}}" bindtap="submit">Submit</button>
+      </block>
+    </block>
+    
+    <block wx:else>
+      <button bindtap="signIn" class="mt30 bg-red text-white">Login to continue</button>
+    </block>
   </view>
-
-  <button class="bg-red text-white" disabled="{{attend === null}}" bindtap="submit">Submit</button>
 </view>
+
+<signin wx:if="{{showSignIn}}" />

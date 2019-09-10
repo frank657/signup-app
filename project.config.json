@@ -81,6 +81,12 @@
 					"pathName": "pages/attendees/attendees",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "login",
+					"pathName": "pages/signin/signin",
+					"scene": null
 				}
 			]
 		}

@@ -1,5 +1,5 @@
 <view class="d-flex flex-column item-center mt50">
-  <button wx:if="{{!flyerUrl}}" class="bg-red text-white opc7 bold" bindtap="uploadFlyer">Upload a flyer</button>
+  <button wx:if="{{!flyerUrl}}" class="bg-white border border-red text-red opc7 bold" bindtap="uploadFlyer">Upload a flyer</button>
   <image wx:if="{{flyerUrl}}" src="{{flyerUrl}}" mode="aspectFill" class="flyer"></image>
 </view>
 
@@ -8,7 +8,7 @@
     <view class="mt100 d-flex flex-column">
       <text class="text-size-sheader bold text-grey-dark">Title</text>
       <view class="content-center d-flex">
-        <textarea bindblur="setTitle" class="border border-grey-light rounded mt30" placeholder="What is your event called?"></textarea>
+        <textarea bindblur="setTitle" class="border border-grey-light rounded mt30" placeholder="What is your event called?" placeholder-class="text-grey"></textarea>
       </view>
     </view>
 
@@ -17,12 +17,12 @@
       <text class="text-size-sheader bold text-grey-dark mb30">Start</text>
       <view class="d-flex space-around">
         <view class="w40">
-          <picker class="bg-red text-white mauto py px20 rounded opc7" 
+          <picker class="bg-white border border-red text-red mauto py px20 rounded opc7" 
             bindchange="startChangeDate"
             mode="date">{{startDate?startDate:'Select a date'}}</picker>
         </view>
         <view class="w40">
-          <picker class="bg-red text-white mauto py px20 rounded opc7" 
+          <picker class="bg-white border border-red text-red mauto py px20 rounded opc7" 
             bindchange="startChangeTime" 
             mode="time">{{startTime?startTime:'Select a time'}}</picker>
         </view>
@@ -34,13 +34,13 @@
       <switch bindchange="changeEndLate" class="mb30">We will see when it ends..</switch>
       <view wx:if="{{!endLate}}" class="d-flex space-around">
         <view class="w40">
-          <picker class="bg-red text-white mauto py px20 rounded opc7" 
+          <picker class="bg-white border border-red text-red mauto py px20 rounded opc7" 
             bindchange="endChangeDate"
             start="{{endDate}}"
             mode="date">{{endDate?endDate:'Select a date'}}</picker>
         </view>
         <view class="w40">
-          <picker class="bg-red text-white mauto py px20 rounded opc7" 
+          <picker class="bg-white border border-red text-red mauto py px20 rounded opc7" 
             bindchange="endChangeTime" 
             start="{{endTime}}"
             mode="time">{{endTime?endTime:'Select a time'}}</picker>
@@ -50,8 +50,8 @@
 
     <view class="mt100 d-flex flex-column item-center">
       <view class="text-size-sheader bold text-grey-dark mb30">Where</view>
-      <view class="bg-red text-white py px20 rounded opc7" bindtap="pinLocation">Pin on the map</view>
-      <textarea bindblur="setLocationName" class="border border-grey-light rounded mt30" placeholder="{{placeholder}}" value="{{selectedLocation.name}}"></textarea>
+      <view class="bg-white border border-red text-red py px20 rounded opc7" bindtap="pinLocation">Pin on the map</view>
+      <textarea bindblur="setLocationName" class="text-grey border border-grey-light rounded mt30" value="{{selectedLocation.name}}" bindfocus="focusInputWhere">{{placeholder}}</textarea>
     </view>
 
   </view>

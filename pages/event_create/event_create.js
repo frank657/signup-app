@@ -18,7 +18,12 @@ Page({
   endChangeTime(e) { this.setData({ endTime: e.detail.value }) },
   changeEndLate(e) { this.setData({ endLate: e.detail.value }) },
   setTitle(e) { this.setData({ title: e.detail.value }) },
-  setLocationName(e) { this.setData({ locationName: e.detail.value }) },
+  focusInputWhere() { this.setData({placeholder: ''}) },
+  setLocationName(e) { 
+    const locationName = e.detail.value
+    const placeholder = locationName === '' ? 'Pin or input the location' : ''
+    this.setData({ locationName, placeholder }) 
+    },
 
   createEvent() {
     wx.showLoading({ title: 'Loading' })

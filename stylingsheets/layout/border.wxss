@@ -63,5 +63,5 @@
 }
 
 .shadow {
-  box-shadow: 0px 10px 45px -12px rgba(152, 149, 148, 1.00);
+  box-shadow: 0px 10px 45px -12px rgba(216, 216, 216, 0.7);
 }
